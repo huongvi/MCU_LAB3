@@ -22,7 +22,10 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "global.h"
+#include "button.h"
+#include "fsm_automatic.h"
+#include "fsm_manual.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -89,15 +92,26 @@ int main(void)
   MX_GPIO_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-
+  HAL_TIM_Base_Start_IT(&htim2);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  setTimer(1,10);
+  setTimer(2,10);
+  setTimer(3,10);
+  setTimer(4,10);
+  setTimer(5,50);
+  setTimer(6,10);
+  setTimer(7,50);
+  setTimer(8,10);
+  setTimer(9,50);
+  modeStatus = MODE1;
   while (1)
   {
     /* USER CODE END WHILE */
-
+	  fsm_auto_run();
+	  fsm_manual_run();
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -234,6 +248,21 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
+	timerRun(0);
+	timerRun(1);
+	timerRun(2);
+	timerRun(3);
+	timerRun(4);
+	timerRun(5);
+	timerRun(6);
+	timerRun(7);
+	timerRun(8);
+	timerRun(9);
+	getKeyInput(0);
+	getKeyInput(1);
+	getKeyInput(2);
+}
 
 /* USER CODE END 4 */
 

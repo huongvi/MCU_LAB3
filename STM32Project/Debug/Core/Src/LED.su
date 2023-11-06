@@ -1,2 +1,4 @@
 LED.c:10:6:displayLED1	16	static
 LED.c:37:6:displayLED2	16	static
+LED.c:64:6:autoStatusWay1	8	static
+LED.c:109:6:autoStatusWay2	8	static

@@ -128,6 +128,29 @@ void mode4(){
 	}
 }
 
+void check_time(){
+	if(RED_timer > (GREEN_timer + YELLOW_timer)){
+		int t = RED_timer - (GREEN_timer + YELLOW_timer);
+		if (RED_timer > 5){
+			if(YELLOW_timer < 3) {
+				if(t >= (3 - YELLOW_timer)){
+					t = t - (3 - YELLOW_timer);
+					YELLOW_timer = 3;
+				}
+				else {
+					YELLOW_timer += t;
+					t = 0;
+				}
+			}
+		}
+		GREEN_timer += t;
+	}
+	if(RED_timer < (GREEN_timer + YELLOW_timer)){
+		int t = (GREEN_timer + YELLOW_timer) - RED_timer;
+		RED_timer += t;
+	}
+}
+
 void fsm_manual_run(){
 	switch (modeStatus){
 	case MODE2:
@@ -177,6 +200,7 @@ void fsm_manual_run(){
 	case MODE4:
 		mode4();
 		if(isButtonPressed(0) == 1 || timer_flag[0] == 1){
+			check_time();
 			modeStatus = MODE1;
 			counter = 0;
 			autoStatus1 = LED_INIT;

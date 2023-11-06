@@ -13,5 +13,7 @@
 
 void displayLED1(int ledStatus1);
 void displayLED2(int ledStatus2);
+void autoStatusWay1();
+void autoStatusWay2();
 
 #endif /* INC_LED_H_ */

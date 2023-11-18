@@ -200,7 +200,7 @@ void fsm_manual_run(){
 	case MODE4:
 		mode4();
 		if(isButtonPressed(0) == 1 || timer_flag[0] == 1){
-			check_time();
+			check_time(); //dieu chinh lai thoi gian
 			modeStatus = MODE1;
 			counter = 0;
 			autoStatus1 = LED_INIT;
